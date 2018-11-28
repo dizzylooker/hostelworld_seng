@@ -10,6 +10,11 @@ view: products {
       url: "https://saleseng.dev.looker.com/dashboards/447?Hostel={{ value | url_encode }}"
       icon_url: "https://pbs.twimg.com/profile_images/661115636723109888/s913HMwz.png"
     }
+    link: {
+      label: "Free Cancellation Project"
+      url: "https://saleseng.dev.looker.com/dashboards/446?Hostel={{ value | url_encode }}"
+      icon_url: "https://pbs.twimg.com/profile_images/661115636723109888/s913HMwz.png"
+    }
   }
 
   dimension: brand {
