@@ -102,7 +102,7 @@ view: order_items {
     type: sum
     value_format_name: eur
     sql: ${sale_price} ;;
-    drill_fields: [products.name, total_booking_value]
+    drill_fields: [products.name, products.id, total_booking_value]
   }
 
   measure: count_cancelled {

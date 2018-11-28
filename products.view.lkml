@@ -5,6 +5,11 @@ view: products {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    link: {
+      label: "Affinity Analysis"
+      url: "https://saleseng.dev.looker.com/dashboards/447?Hostel={{ value | url_encode }}"
+      icon_url: "https://pbs.twimg.com/profile_images/661115636723109888/s913HMwz.png"
+    }
   }
 
   dimension: brand {
