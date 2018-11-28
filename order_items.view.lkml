@@ -105,6 +105,20 @@ view: order_items {
     drill_fields: [products.name, total_booking_value]
   }
 
+  measure: count_cancelled {
+    type: count
+    filters: {
+      field: returned_date
+      value: "-NULL"
+    }
+  }
+
+  measure: booking_value_per_hit {
+    type: average
+    value_format_name: eur
+    sql: ${sale_price} ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
