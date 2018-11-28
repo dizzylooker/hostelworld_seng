@@ -130,4 +130,36 @@ view: order_items {
       inventory_items.product_name
     ]
   }
+
+  dimension: days_until_next_booking {
+    type: number
+    view_label: "Repeat Booking Facts"
+    sql: DATEDIFF('day',${created_raw},${repeat_purchase_facts.next_order_raw}) ;;
+  }
+
+  dimension: repeat_bookings_within_1y {
+    type: yesno
+    view_label: "Repeat Booking Facts"
+    sql: ${days_until_next_booking} <= 365 ;;
+  }
+
+  measure: count_with_repeat_booking_within_1y {
+    type: count_distinct
+    sql: ${id} ;;
+    view_label: "Repeat Booking Facts"
+
+    filters: {
+      field: repeat_bookings_within_1y
+      value: "Yes"
+    }
+  }
+
+  measure: 1_year_repeat_booking_rate {
+    description: "The percentage of customers who book again within 1 year"
+    view_label: "Repeat Booking Facts"
+    type: number
+    value_format_name: percent_1
+    sql: 1.0 * ${count_with_repeat_booking_within_1y} / NULLIF(${count},0) ;;
+    drill_fields: [products.brand, count, count_with_repeat_booking_within_1y]
+  }
 }

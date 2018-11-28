@@ -72,6 +72,12 @@ explore: hostel_bookings {
     relationship: one_to_many
     sql_on: ${products.id} = ${affinity.product_a_id} ;;
   }
+
+  join: repeat_purchase_facts {
+    view_label: "Repeat Booking Facts"
+    relationship: many_to_one
+    sql_on: ${hostel_bookings.order_id} = ${repeat_purchase_facts.order_id} ;;
+  }
 }
 
 explore: products {
